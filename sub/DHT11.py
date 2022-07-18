@@ -12,7 +12,10 @@ def dht11():
         dht_pin = 4
     '''
     humidity, temperature = Adafruit_DHT.read(DHT_SENSOR, DHT_PIN)
+    if humidity==None or temperature==None:
+        humidity, temperature = Adafruit_DHT.read(DHT_SENSOR, DHT_PIN)
     print('humidity: %f, temperature: %f'%(humidity, temperature))
+    # print(humidity, temperature)
     return humidity, temperature
 
 if __name__ == '__main__':
