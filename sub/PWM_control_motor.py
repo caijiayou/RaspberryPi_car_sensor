@@ -3,11 +3,12 @@
 import RPi.GPIO as GPIO
 import time
 
-CONTROL_PIN = 17
+CONTROL_PIN = 27
 PWM_FREQ = 50
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(CONTROL_PIN, GPIO.OUT)
+GPIO.setwarnings(False)
 
 pwm = GPIO.PWM(CONTROL_PIN, PWM_FREQ)
 pwm.start(0)
@@ -20,13 +21,15 @@ def angle_to_duty_cycle(angle):
     duty_cycle = (0.05 * PWM_FREQ) + (0.19 * PWM_FREQ * angle / 180)
     pwm.ChangeDutyCycle(duty_cycle)
     print('角度={: >3}, 工作週期={:.2f}'.format(angle, duty_cycle))
-    time.sleep(0.5)
 
 if __name__ == '__main__':
     while True:
         try:
+            angle_to_duty_cycle(130)
+            time.sleep(0.5)
             angle_to_duty_cycle(30)
             time.sleep(0.5)
+
         except:
             print('Error, wait 5sec and continue.')
             time.sleep(5)

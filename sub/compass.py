@@ -75,9 +75,9 @@ def compass():
     elif(heading > 360.0):
         heading = heading - 360.0
 
-    print ("Heading Angle = %d°" %heading)
+    # print ("Heading Angle = %d°" %heading)
+    return heading
 
 if __name__==('__main__'):
-    while 1:
+    while True:
         compass()
-

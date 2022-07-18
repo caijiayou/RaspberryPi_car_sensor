@@ -21,23 +21,34 @@ chan1 = AnalogIn(ads, ADS.P1)
 chan2 = AnalogIn(ads, ADS.P2)
 chan3 = AnalogIn(ads, ADS.P3)
 
-while True:
-    
-    os.system('clear')
-    print('channel 0| value: %f, voltage: %f'%(chan0.value, chan0.voltage))
-    print('channel 1| value: %f, voltage: %f'%(chan1.value, chan1.voltage))
-    print('channel 2| value: %f, voltage: %f'%(chan2.value, chan2.voltage))
-    print('channel 3| value: %f, voltage: %f'%(chan3.value, chan3.voltage))
-    print("---------------------------------------------------")
+def pm25():
+    '''
+        call this function return dustVal.
+    '''
+    # print('channel 0| value: %f, voltage: %f'%(chan0.value, chan0.voltage))
+    # print('channel 1| value: %f, voltage: %f'%(chan1.value, chan1.voltage))
+    # print('channel 2| value: %f, voltage: %f'%(chan2.value, chan2.voltage))
+    # print('channel 3| value: %f, voltage: %f'%(chan3.value, chan3.voltage))
+    # print("---------------------------------------------------")
 
     GPIO.output(LED_Pin, False)
     time.sleep(0.000280)
     # dustVal=chan0.value
     voltage0 = chan0.voltage
-    print('voltage0: ', voltage0)
+    # print('voltage0: ', voltage0)
     dustVal = -1*((0.2-voltage0)/6.5)
     time.sleep(0.000040)
     GPIO.output(LED_Pin, True)
     time.sleep(0.009680)
-    print('ans: %f(mg/m3)'%dustVal)
-    time.sleep(0.5)
+    # print('ans: %f(mg/m3)'%dustVal)
+    # time.sleep(0.5)
+    return dustVal
+
+if __name__=='__main__':
+    while True:
+        try:
+            os.system('clear')
+            pm25()
+        except:
+            print('Error')
+            continue
