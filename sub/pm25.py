@@ -47,8 +47,9 @@ def pm25():
 if __name__=='__main__':
     while True:
         try:
-            os.system('clear')
-            pm25()
+            # os.system('clear')
+            dustVal = pm25()
+            print('ans: %f(mg/m3)'%dustVal)
         except:
             print('Error')
             continue

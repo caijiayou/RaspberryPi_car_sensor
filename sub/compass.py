@@ -80,4 +80,5 @@ def compass():
 
 if __name__==('__main__'):
     while True:
-        compass()
+        heading = compass()
+        print ("Heading Angle = %d°" %heading)

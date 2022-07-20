@@ -15,7 +15,7 @@ def gps():
 
             #cut GPS_data
             if newdata[0:6]== b"$GNRMC":
-                print('\n'*3)
+                # print('\n'*3)
                 gps = newdata[newdata.index(b","): newdata.index(b"E")]
                 lat = gps[gps.index(b"A")+2: gps.index(b"N")-1]
                 lon = gps[gps.index(b"N")+2: len(gps)-1]
@@ -24,9 +24,9 @@ def gps():
                 gps = bytes.decode(gps)
                 lat = bytes.decode(lat)
                 lon = bytes.decode(lon)
-                print('GPS: ', gps)
-                print('latitude: ', lat)
-                print('longitude: ', lon)
+                # print('GPS: ', gps)
+                # print('latitude: ', lat)
+                # print('longitude: ', lon)
 
                 #latitude & longitude unit conversion
                 f_lat = lat[2:]
@@ -36,10 +36,11 @@ def gps():
                 f_lon = lon[3:]
                 d_lon = lon[:3]
                 d_lon = float(f_lon)/60 + float(d_lon)
-                print('========================================')
-                print('latitude: ', d_lat)
-                print('longitude: ', d_lon)
-                print('========================================')
+                # print('========================================')
+                # print('latitude: ', d_lat)
+                # print('longitude: ', d_lon)
+                # print('========================================')
+                return d_lat, d_lon
                 break
         except:
             print('Not connected')
@@ -48,6 +49,11 @@ def gps():
 
 if __name__==('__main__'):
     while True:
-        gps()
+        lat, lon = gps()
+        print('\n'*5)
+        print('========================================')
+        print('latitude: ', lat)
+        print('longitude: ', lon)
+        print('========================================')
         
 
